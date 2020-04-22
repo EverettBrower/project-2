@@ -1,21 +1,42 @@
 // jshint esversion: 6
 
-let controller = function() {
+let main = function() {
+  /*
   let prefixURL =
     "https://api.flickr.com/services/feeds/photos_public.gne?tags=";
   let suffixURL = "&format=json&jsoncallback=?";
   //get value entered by user from textbox
   let flickrTag = $("input").val();
   console.log(flickrTag);
-  let requestURL = prefixURL + flickrTag + suffixURL;
-  console.log(requestURL);
+  */
+  let requestURL = "https://thejsway-server.herokuapp.com/api/articles";
 
   //clear old photos
   //document.querySelector(".photos").innerHTML = "";
-  $(".photos").text("");
+  //$(".photos").text("");
 
-  $.getJSON(requestURL, function(flickrResponse) {
-    flickrResponse.items.forEach(function(item, index) {
+  $.getJSON(requestURL, function(response) {
+    let firstArticle = response[0];
+    console.log(`Article ${firstArticle.id}
+Title: ${firstArticle.title}
+Content: ${firstArticle.content}`);
+
+    response.forEach(function(item, index) {
+      let newDiv = document.createElement("div");
+      document.querySelector(".articles").appendChild(newDiv);
+
+      let newH3 = document.createElement("h3");
+      newH3.textContent = `Article ${item.id}`;
+      newDiv.appendChild(newH3);
+
+      let titleParagraph = document.createElement("p");
+      titleParagraph.textContent = item.title;
+      newDiv.appendChild(titleParagraph);
+
+      let bodyParagraph = document.createElement("p");
+      bodyParagraph.textContent = item.content;
+      newDiv.appendChild(bodyParagraph);
+      /*
       //Flickr returns 20 images by default
       //We need only six images for the Gallery
       if (index < 6) {
@@ -33,6 +54,7 @@ let controller = function() {
         $(".photos").append($img);
         $img.fadeIn();
       }
+      */
     });
   });
 };
@@ -44,5 +66,5 @@ window.addEventListener("load", function() {
   let button = document.querySelector("button");
 
   //register the click handler for the button
-  button.addEventListener("click", controller);
+  button.addEventListener("click", main);
 });
