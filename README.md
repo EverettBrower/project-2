@@ -8,7 +8,7 @@ Repo start-state:
 
 <H2>281 Project 2 Learning Outcomes </H2>
 
-• A web API or Application Programming Interface is an API
+• An web API or Application Programming Interface is an API
 accessed using the HTTP protocol.
 
 • Web APIs often deliver data formatted as JSON.
