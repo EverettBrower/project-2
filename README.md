@@ -28,6 +28,6 @@ Flickr offers several public APIs.
 
 1. README.md
 
-2) .gitignore
+2. .gitignore
 
-3) gallery.html, gallery.css, gallery.js
+3. gallery.html, gallery.css, gallery.js
